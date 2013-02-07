@@ -1,0 +1,1 @@
+start c:/apps/sublime2/sublime_text.exe %1 %2 %3 %4
