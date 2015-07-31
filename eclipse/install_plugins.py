@@ -45,8 +45,7 @@ if __name__ == '__main__':
         assert not invalid_names, ("Invalid plugin name(s) given: %s. "
                                    "Valid names are: %s" % (','.join(invalid_names),
                                                             valid_plugin_names))
-        plugin_info = tuple(UPDATE_SITE_INSTALLS[name] 
-                            for name in sys.argv[2].split(','))
+        plugin_info = tuple(UPDATE_SITE_INSTALLS[name] for name in plugin_names)
     else:
         plugin_info = tuple(sorted(UPDATE_SITE_INSTALLS.values()))
 
