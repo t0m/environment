@@ -89,7 +89,7 @@ class UpdateSiteInstall(AbstractInstall):
         output = 'start'
         while output:
             output = p.stdout.readline().decode('utf-8')
-            print(output)
+            LOGGER.info(output)
         p.wait()
         if p.returncode != 0:
             raise Exception("Command failed, returned %d" % p.returncode)
@@ -113,8 +113,8 @@ if __name__ == '__main__':
     sorted_plugin_names = sorted(PLUGIN_INSTALLS.keys())
     valid_plugin_names = ', '.join(sorted_plugin_names)
     if len(sys.argv) == 1 or len(sys.argv) > 3:
-        print("%s <eclipse_directory> <plugin_name_csv(optional)>" % __file__)
-        print("Valid plugin names are %s" % valid_plugin_names)
+        LOGGER.info("%s <eclipse_directory> <plugin_name_csv(optional)>" % __file__)
+        LOGGER.info("Valid plugin names are %s" % valid_plugin_names)
         sys.exit(1)
 
     eclipse_dir = sys.argv[1]
