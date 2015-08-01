@@ -40,7 +40,7 @@ PLUGIN_INSTALLS = {
 
 class AbstractInstall(object):
     @abc.abstractmethod
-    def install(self):
+    def install(self, eclipse_dir):
         raise NotImplementedError()
 AbstractInstall = abc.ABCMeta(
                               AbstractInstall.__name__,
