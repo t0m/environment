@@ -22,22 +22,6 @@ LOGGER = logging.getLogger(__name__)
 LOGGER.addHandler(logging.StreamHandler(sys.stdout))
 LOGGER.setLevel(logging.DEBUG)
 
-
-PLUGIN_INSTALLS = {
-    'egit': UpdateSiteInstall(
-                              'http://download.eclipse.org/egit/updates/',
-                              'org.eclipse.egit',
-                             ),
-    # currently doesn't work via update site :(
-    'pydev': ZipDropInInstall(
-                              'http://downloads.sourceforge.net/project/pydev/pydev/PyDev%204.2.0/PyDev%204.2.0.zip',
-                             ),
-    'theme': UpdateSiteInstall(
-                               'http://eclipse-color-theme.github.io/update/',
-                               'com.github.eclipsecolortheme.feature.feature.group',
-                              ),
-}
-
 class AbstractInstall(object):
     @abc.abstractmethod
     def install(self, eclipse_dir):
@@ -109,6 +93,21 @@ class UpdateSiteInstall(AbstractInstall):
         p.wait()
         if p.returncode != 0:
             raise Exception("Command failed, returned %d" % p.returncode)
+
+PLUGIN_INSTALLS = {
+    'egit': UpdateSiteInstall(
+                              'http://download.eclipse.org/egit/updates/',
+                              'org.eclipse.egit',
+                             ),
+    # currently doesn't work via update site :(
+    'pydev': ZipDropInInstall(
+                              'http://downloads.sourceforge.net/project/pydev/pydev/PyDev%204.2.0/PyDev%204.2.0.zip',
+                             ),
+    'theme': UpdateSiteInstall(
+                               'http://eclipse-color-theme.github.io/update/',
+                               'com.github.eclipsecolortheme.feature.feature.group',
+                              ),
+}
 
 if __name__ == '__main__':
     sorted_plugin_names = sorted(PLUGIN_INSTALLS.keys())
